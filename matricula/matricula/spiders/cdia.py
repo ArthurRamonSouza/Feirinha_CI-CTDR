@@ -16,8 +16,8 @@ class CdiaSpider(scrapy.Spider):
 
         pass
 
-
-os.remove("json/cdia.json")
+#Primeira vez que for gerar o json deixe comentado
+#os.remove('json/cc.json')
 
 
 process = CrawlerProcess(settings={

@@ -5,26 +5,35 @@ from flask import Flask, request, app, jsonify
 api = Flask(__name__)
 api.config['JSON_AS_ASCII'] = False
 
-with open('C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Webscrapping\matricula\matricula\spiders\json\cc.json','r',encoding='utf-8') as arquivo_jsonCC:
-    dados_jsonCC = json.load(arquivo_jsonCC, encoding='utf-8')
+#EDITE AS VARIAVEIS DE SISTEMA AQUI
+#pathCC = 'C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Feirinha_CI-CTDR\matricula\matricula\spiders\json\cc.json'
+#pathEC = 'C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Feirinha_CI-CTDR\matricula\matricula\spiders\json\ec.json'
+#pathMC = 'C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Feirinha_CI-CTDR\matricula\matricula\spiders\json\mc.json'
+#pathCDIA = 'C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Feirinha_CI-CTDR\matricula\matricula\spiders\json\cdia.json'
+#pathGS = 'C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Feirinha_CI-CTDR\matricula\matricula\spiders\json\gs.json'
+#pathTA = 'C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Feirinha_CI-CTDR\matricula\matricula\spiders\json\\ta.json'
+#pathTPS = 'C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Feirinha_CI-CTDR\matricula\matricula\spiders\json\\tps.json'
 
-with open('C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Webscrapping\matricula\matricula\spiders\json\ec.json','r',encoding='utf-8') as arquivo_jsonEC:
-    dados_jsonEC = json.load(arquivo_jsonEC, encoding='utf-8')
+with open(pathCC,'r',encoding='utf-8') as arquivo_jsonCC:
+    dados_jsonCC = json.load(arquivo_jsonCC)
 
-with open('C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Webscrapping\matricula\matricula\spiders\json\cdia.json','r',encoding='utf-8') as arquivo_jsonCDIA:
-    dados_jsonCDIA = json.load(arquivo_jsonCDIA, encoding='utf-8')
+with open(pathEC,'r',encoding='utf-8') as arquivo_jsonEC:
+    dados_jsonEC = json.load(arquivo_jsonEC)
 
-with open('C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Webscrapping\matricula\matricula\spiders\json\mc.json','r',encoding='utf-8') as arquivo_jsonMC:
-    dados_jsonMC = json.load(arquivo_jsonMC, encoding='utf-8')
+with open(pathCDIA,'r',encoding='utf-8') as arquivo_jsonCDIA:
+    dados_jsonCDIA = json.load(arquivo_jsonCDIA)
 
-with open('C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Webscrapping\matricula\matricula\spiders\json\gs.json','r',encoding='utf-8') as arquivo_jsonGS:
-    dados_jsonGS = json.load(arquivo_jsonGS, encoding='utf-8')
+with open(pathMC,'r',encoding='utf-8') as arquivo_jsonMC:
+    dados_jsonMC = json.load(arquivo_jsonMC)
 
-with open('C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Webscrapping\matricula\matricula\spiders\json\\ta.json','r',encoding='utf-8') as arquivo_jsonTA:
-    dados_jsonTA = json.load(arquivo_jsonTA, encoding='utf-8')
+with open(pathGS,'r',encoding='utf-8') as arquivo_jsonGS:
+    dados_jsonGS = json.load(arquivo_jsonGS)
 
-with open('C:\\Users\davib\Documents\\UFPB\SEMESTRE 4\ENGENHARIA DE SOFTWARE\Webscrapping\matricula\matricula\spiders\json\\tps.json','r',encoding='utf-8') as arquivo_jsonTPS:
-    dados_jsonTPS = json.load(arquivo_jsonTPS, encoding='utf-8')
+with open(pathTA,'r',encoding='utf-8') as arquivo_jsonTA:
+    dados_jsonTA = json.load(arquivo_jsonTA)
+
+with open(pathTPS,'r',encoding='utf-8') as arquivo_jsonTPS:
+    dados_jsonTPS = json.load(arquivo_jsonTPS)
 
 @api.route('/matriculaCC', methods=['GET'])
 def obter_matriculaCC():
