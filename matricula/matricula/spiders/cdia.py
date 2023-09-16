@@ -17,12 +17,12 @@ class CdiaSpider(scrapy.Spider):
         pass
 
 
-os.remove("cdia.json")
+os.remove("json/cdia.json")
 
 
 process = CrawlerProcess(settings={
     'FEED_FORMAT': 'json',
-    'FEED_URI': 'cdia.json',
+    'FEED_URI': 'json/cdia.json',
     'FEED_EXPORT_ENCODING': 'utf-8'
 })
 

@@ -18,12 +18,12 @@ class EcSpider(scrapy.Spider):
         pass
 
 
-os.remove("ec.json")
+os.remove("json/ec.json")
 
 
 process = CrawlerProcess(settings={
     'FEED_FORMAT': 'json',
-    'FEED_URI': 'ec.json',
+    'FEED_URI': 'json/ec.json',
     'FEED_EXPORT_ENCODING': 'utf-8'
 })
 

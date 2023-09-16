@@ -17,12 +17,12 @@ class CcSpider(scrapy.Spider):
         pass
 
 
-os.remove("cc.json")
+os.remove('json/cc.json')
 
 
 process = CrawlerProcess(settings= {
     'FEED_FORMAT': 'json',
-    'FEED_URI': 'cc.json',
+    'FEED_URI': 'json/cc.json',
     'FEED_EXPORT_ENCODING': 'utf-8'
 })
 

@@ -1,15 +1,15 @@
+import os
 import scrapy
 from scrapy.crawler import CrawlerProcess
-import os
 
 
-class McSpider(scrapy.Spider):
-    name = 'mc'
-    start_urls = ['https://sigaa.ufpb.br/sigaa/public/curso/alunos.jsf?lc=pt_BR&id=1626769']
+class GsSpider(scrapy.Spider):
+    name = 'gs'
+    start_urls = ['https://sigaa.ufpb.br/sigaa/public/curso/alunos.jsf?lc=pt_BR&id=1976359']
 
     def parse(self, response):
         for matriculas in response.css('.colMatricula'):
-            yield {
+            yield{
                 'nome': matriculas.css('.colMatricula+ td::text').get(),
                 'matricula': matriculas.css('td.colMatricula::text').get()
             }
@@ -17,15 +17,14 @@ class McSpider(scrapy.Spider):
         pass
 
 
-os.remove("json/mc.json")
+os.remove('json/gs.json')
 
 
-process = CrawlerProcess(settings={
+process = CrawlerProcess(settings= {
     'FEED_FORMAT': 'json',
-    'FEED_URI': 'json/mc.json',
+    'FEED_URI': 'json/gs.json',
     'FEED_EXPORT_ENCODING': 'utf-8'
-    
 })
 
-process.crawl(McSpider)
+process.crawl(GsSpider)
 process.start()
