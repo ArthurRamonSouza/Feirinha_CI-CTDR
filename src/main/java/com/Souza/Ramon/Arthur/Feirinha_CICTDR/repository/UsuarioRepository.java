@@ -19,5 +19,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 	@Modifying
     @Query("DELETE FROM Anuncio a WHERE a.anunciante.matricula = ?1")
     void deleteAnunciosByMatricula(String matricula);
-
 }

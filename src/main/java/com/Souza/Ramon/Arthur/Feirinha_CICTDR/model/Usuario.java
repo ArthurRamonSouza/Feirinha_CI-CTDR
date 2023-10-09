@@ -1,6 +1,5 @@
 package com.Souza.Ramon.Arthur.Feirinha_CICTDR.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
@@ -27,9 +26,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "tb_usuarios")
-public class Usuario implements Serializable {
-
-	private static final long serialVersionUID = 6706916942992561477L;
+public class Usuario {
 	@Id
 	private String matricula;
 	@NotBlank
@@ -46,35 +43,8 @@ public class Usuario implements Serializable {
 	@NotBlank
 	private String telefone;
 	private String descricao;
-	@OneToMany(mappedBy = "anunciante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToMany(mappedBy = "anunciante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Anuncio> anuncios;
-
-	public Usuario(String apelido, String senha, String telefone, String descricao) {
-		super();
-		this.apelido = apelido;
-		this.senha = senha;
-		this.telefone = telefone;
-		this.descricao = descricao;
-	}
-
-	public Usuario(String matricula) {
-		this.matricula = matricula;
-	}
-	
-	@Override
-	public String toString() {
-	    return "Usuario{" +
-	            "matricula='" + matricula + '\'' +
-	            ", nome='" + nome + '\'' +
-	            ", apelido='" + apelido + '\'' +
-	            ", senha='" + senha + '\'' +
-	            ", email='" + email + '\'' +
-	            ", curso='" + curso + '\'' +
-	            ", estrelas=" + estrelas +
-	            ", telefone='" + telefone + '\'' +
-	            ", descricao='" + descricao + '\'' +
-	            '}';
-	}
 }

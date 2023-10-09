@@ -13,7 +13,6 @@ import com.Souza.Ramon.Arthur.Feirinha_CICTDR.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 
 @Service
-@Transactional
 public class UsuarioService {
 
 	@Autowired
@@ -27,6 +26,7 @@ public class UsuarioService {
 		return usuarioRepository.save(usuario);
 	}
 
+	@Transactional
 	public void deleteByMatricula(String matricula) {
 		usuarioRepository.deleteAnunciosByMatricula(matricula);
 		usuarioRepository.deleteById(matricula);
@@ -35,5 +35,4 @@ public class UsuarioService {
 	public List<Anuncio> getAnuncios(String anuncianteMatricula) {
 		return usuarioRepository.findAllAnunciosByMatricula(anuncianteMatricula);
 	}
-
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Souza.Ramon.Arthur.Feirinha_CICTDR.dto.UsuarioDTO;
 import com.Souza.Ramon.Arthur.Feirinha_CICTDR.model.Anuncio;
 import com.Souza.Ramon.Arthur.Feirinha_CICTDR.model.Usuario;
 import com.Souza.Ramon.Arthur.Feirinha_CICTDR.service.UsuarioService;
@@ -30,17 +31,16 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 
+	@ResponseBody
 	@GetMapping("/{alunoMatricula}")
 	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
 	public String usuario(@PathVariable String alunoMatricula) {
 		if (usuarioService.getUsuarioByMatricula(alunoMatricula).isPresent())
 			return usuarioService.getUsuarioByMatricula(alunoMatricula).get().toString();
-
 		return "Usuário não encontrado na base de dados!";
 	}
 
-	@GetMapping("/perfil/{alunoMatricula}")
+	@GetMapping("/{alunoMatricula}/perfil")
 	@ResponseStatus(HttpStatus.OK)
 	public ModelAndView perfilUsuario(@PathVariable String alunoMatricula) {
 		if (usuarioService.getUsuarioByMatricula(alunoMatricula).isPresent()) {
@@ -49,8 +49,6 @@ public class UsuarioController {
 			System.out.println("Bateu aqui! " + alunoMatricula);
 			return modelAndView;
 		}
-
-		System.out.println("Bateu aqui! " + alunoMatricula);
 		ModelAndView modelAndView = new ModelAndView("index");
 		return modelAndView;
 	}
@@ -62,19 +60,22 @@ public class UsuarioController {
 		return "Usuario criado: " + usuario.toString();
 	}
 
-	@PutMapping("/atualizar")
+	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
-	public String atualizarUsuario(@RequestBody Usuario usuarioAtualizado) {
-		Optional<Usuario> optionalUsuarioAntigo = usuarioService
-				.getUsuarioByMatricula(usuarioAtualizado.getMatricula());
-		if (optionalUsuarioAntigo.isPresent()) {
-			Usuario usuarioAntigo = optionalUsuarioAntigo.get();
-			usuarioAntigo.setApelido(usuarioAtualizado.getApelido());
-			usuarioAntigo.setDescricao(usuarioAtualizado.getDescricao());
-			usuarioAntigo.setSenha(usuarioAtualizado.getSenha());
-			usuarioAntigo.setTelefone(usuarioAtualizado.getTelefone());
-			usuarioService.save(usuarioAntigo);
-			return "Usuario:" + usuarioAntigo.toString() + " atualizado!";
+	@PutMapping("/{alunoMatricula}/atualizar")
+	public String atualizarUsuario(@PathVariable String alunoMatricula, @RequestBody UsuarioDTO usuarioDTOAtualizado) {
+		Optional<Usuario> optionalUsuario = usuarioService.getUsuarioByMatricula(alunoMatricula);
+		if (optionalUsuario.isPresent()) {
+			Usuario usuarioParaAtualizar = optionalUsuario.get();
+			Usuario usuarioAtualizado = usuarioDTOAtualizado.toUsuario();
+			usuarioAtualizado.setNome(usuarioParaAtualizar.getNome());
+			usuarioAtualizado.setAnuncios(usuarioParaAtualizar.getAnuncios());
+			usuarioAtualizado.setCurso(usuarioParaAtualizar.getCurso());
+			usuarioAtualizado.setEmail(usuarioParaAtualizar.getEmail());
+			usuarioAtualizado.setEstrelas(usuarioParaAtualizar.getEstrelas());
+			usuarioAtualizado.setMatricula(alunoMatricula);
+			usuarioService.save(usuarioAtualizado);
+			return "Usuario: " + usuarioAtualizado.getApelido() + " atualizado!";
 		}
 		return "Usuario não foi atualizado pois não foi encontrado!";
 	}
@@ -86,6 +87,7 @@ public class UsuarioController {
 		return "Usuario com matrícula " + alunoMatricula + " removido!";
 	}
 
+	@ResponseBody
 	@GetMapping("/{alunoMatricula}/anuncios")
 	public ResponseEntity<List<Anuncio>> meusAnuncios(@PathVariable String alunoMatricula) {
 		Optional<Usuario> optionalUsuario = usuarioService.getUsuarioByMatricula(alunoMatricula);

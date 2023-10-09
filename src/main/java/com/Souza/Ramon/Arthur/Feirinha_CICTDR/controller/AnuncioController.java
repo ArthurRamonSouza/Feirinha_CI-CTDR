@@ -2,8 +2,6 @@ package com.Souza.Ramon.Arthur.Feirinha_CICTDR.controller;
 
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.Souza.Ramon.Arthur.Feirinha_CICTDR.dto.AnuncioDTO;
 import com.Souza.Ramon.Arthur.Feirinha_CICTDR.model.Anuncio;
 import com.Souza.Ramon.Arthur.Feirinha_CICTDR.model.Usuario;
 import com.Souza.Ramon.Arthur.Feirinha_CICTDR.service.AnuncioService;
@@ -32,55 +31,48 @@ public class AnuncioController {
 	@Autowired
 	private UsuarioService usuarioService;
 
+	@ResponseBody
 	@PostMapping("/criar")
 	@ResponseStatus(HttpStatus.CREATED)
-	@ResponseBody
-	public String criarAnuncio(@RequestBody @Valid Anuncio anuncio) {
-		Optional<Usuario> anunciante = usuarioService.getUsuarioByMatricula(anuncio.getAnunciante().getMatricula());
+	public String criarAnuncio(@RequestBody AnuncioDTO anuncioDto) {
+		Optional<Usuario> anunciante = usuarioService.getUsuarioByMatricula(anuncioDto.getMatriculaAnunciante());
 		if (anunciante.isPresent()) {
-			System.out.println("Anunciante founded.\n");
-			// System.out.println(anunciante.get().toString());
-			anuncio.setAnunciante(anunciante.get());
+			System.out.println("Anunciante cadastrado.\n");
+			Anuncio anuncio = anuncioDto.toAnuncio();
 			anuncioService.save(anuncio);
 			return "Anuncio criado";
 		}
 		return "Não foi possível criar o anúncio pois o anunciante é inexistente.";
 	}
 
+	@ResponseBody
 	@GetMapping("/{anuncioId}")
 	public String visualizarAnuncio(@PathVariable Long anuncioId) {
 		Optional<Anuncio> optionalAnuncio = anuncioService.getAnuncio(anuncioId);
 		if (optionalAnuncio.isPresent())
 			return optionalAnuncio.get().toString();
-
 		return "Anúncio não encontrado no banco de dados!";
 	}
 
-	@PutMapping("/atualizar")
-	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public String editarAnuncio(@RequestBody Anuncio anuncioAtualizado) {
-		Optional<Anuncio> optionalAnuncio = anuncioService.getAnuncio(anuncioAtualizado.getAnuncioId());
+	@PutMapping("/{anuncioId}/atualizar")
+	@ResponseStatus(HttpStatus.OK)
+	public String editarAnuncio(@PathVariable Long anuncioId, @RequestBody AnuncioDTO anuncioDTOAtualizado) {
+		Optional<Anuncio> optionalAnuncio = anuncioService.getAnuncio(anuncioId);
 		if (optionalAnuncio.isPresent()) {
-			Anuncio anuncioAntigo = optionalAnuncio.get();
-			anuncioAntigo.setCategoria(anuncioAtualizado.getCategoria());
-			anuncioAntigo.setDescricao(anuncioAtualizado.getDescricao());
-			anuncioAntigo.setLocalizacao(anuncioAtualizado.getLocalizacao());
-			anuncioAntigo.setPreco(anuncioAtualizado.getPreco());
-			anuncioAntigo.setQuantidade(anuncioAtualizado.getQuantidade());
-			anuncioAntigo.setTitulo(anuncioAtualizado.getTitulo());
-			anuncioAntigo.setUrlImagem(anuncioAtualizado.getUrlImagem());
-
-			anuncioService.save(anuncioAntigo);
+			Anuncio anuncioParaAtualizar = optionalAnuncio.get();
+			Anuncio anuncioAtualizado = anuncioDTOAtualizado.toAnuncio();
+			anuncioAtualizado.setAnuncioId(anuncioId);
+			anuncioAtualizado.setMatriculaAnunciante(anuncioParaAtualizar.getMatriculaAnunciante());
+			anuncioService.save(anuncioAtualizado);
 			return "Anuncio alterado";
 		}
-
 		return "Anúncio não encontrado no banco de dados!";
 	}
 
+	@ResponseBody
 	@DeleteMapping("/remover/{anuncioId}")
 	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
 	public String removerAnuncio(@PathVariable Long anuncioId) {
 		anuncioService.deleteById(anuncioId);
 		return "Anuncio removido!";
@@ -90,5 +82,4 @@ public class AnuncioController {
 	public String onError() {
 		return "redirect:/paginaInicial";
 	}
-
 }

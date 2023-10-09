@@ -11,7 +11,6 @@ import com.Souza.Ramon.Arthur.Feirinha_CICTDR.repository.AnuncioRepository;
 import jakarta.transaction.Transactional;
 
 @Service
-@Transactional
 public class AnuncioService {
 	
 	@Autowired
@@ -28,5 +27,4 @@ public class AnuncioService {
 	public void deleteById(Long anuncioId) {
 		anuncioRepository.deleteById(anuncioId);
 	}
-
 }
