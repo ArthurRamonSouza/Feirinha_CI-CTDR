@@ -1,8 +1,8 @@
 import { AdLarge } from "../../components/AdLarge"
 import { AdvertiserProfile } from "../../components/AdvertiserProfile"
-import { HeaderSearchBar } from "./../../components/HeaderSearchBar"
+import { HeaderSearchBar } from "../../components/HeaderSearchBar"
 
-export function ViewAd() {
+const AdView = () => {
   return (
     <div>
       <HeaderSearchBar />
@@ -11,3 +11,5 @@ export function ViewAd() {
     </div>
   )
 }
+
+export default AdView

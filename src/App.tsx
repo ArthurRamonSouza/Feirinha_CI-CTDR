@@ -1,11 +1,10 @@
-import "./App.css"
-import { ViewAd } from "./pages/viewAd/ViewAd"
-
+import ExchangeSuggestion from "./pages/exchange_suggestion/ExchangeSuggestion"
+import AdView from "./pages/view_ad/AdView"
 
 function App() {
   return (
     <div>
-      <ViewAd/>
+      <AdView />
     </div>
   )
 }

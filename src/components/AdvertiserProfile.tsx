@@ -7,7 +7,7 @@ export function AdvertiserProfile() {
     const exchangeIcon = "src/assets/icons/exchange.png"
 
     return (
-        <div>
+        <div className="advertiser-profile">
             <img src={advertiserImage} alt="Advertiser image" />
             <p>{advertiserName}</p>
             <p>{advertiserStars}</p>

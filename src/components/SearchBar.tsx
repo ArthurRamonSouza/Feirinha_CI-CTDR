@@ -3,7 +3,7 @@ export function SearchBar() {
 
     return (
         <div className="search-bar">
-            <button className="search-bar-btn"><img src={searchIcon} alt="search" /></button>
+            <button><img src={searchIcon} alt="search" /></button>
             <input type="text" placeholder="O que vamos comprar hoje?" className="search-bar-input" ></input>
         </div>
     )
