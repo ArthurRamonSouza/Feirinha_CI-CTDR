@@ -1,4 +1,4 @@
-import ExchangeSuggestion from "./pages/exchange_suggestion/ExchangeSuggestion"
+import "./App.css"
 import AdView from "./pages/view_ad/AdView"
 
 function App() {
