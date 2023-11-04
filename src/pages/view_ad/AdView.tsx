@@ -4,7 +4,7 @@ import { HeaderSearchBar } from "../../components/HeaderSearchBar"
 
 const AdView = () => {
   return (
-    <div>
+    <div className="ad-view">
       <HeaderSearchBar />
       <AdLarge />
       <AdvertiserProfile />
