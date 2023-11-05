@@ -17,7 +17,7 @@
 
 /*h-search-bar*/
 .h-search-bar {
-  height: 13vh;
+  height: 11vh;
   width: 100vW;
   display: flex;
   flex-direction: row;
@@ -118,12 +118,13 @@
 /*ad-large*/
 .ad-large {
   margin: 5vh 10vw;
+  margin-bottom: 0;
   width: 45vw;
   justify-content: center;
 }
 
 .ad-large p {
-  font-size: 15px;
+  font-size: 0.9vw;
   font-weight: 400;
   text-align: justify;
 
@@ -142,8 +143,9 @@
 .advertiser-profile {
   display: flex;
   width: 20vw;
-  height: 50vh;
+  height: clamp(50vh, 65vh, 65vh);
   margin: 10vh 5vw;
+  margin-bottom: 0;
   background-color: #d9d9d9;
   border-radius: 40px;
   padding: 20px;
@@ -153,15 +155,14 @@
 }
 
 .advertiser-image {
-  width: 100px;
-  height: 100px;
+  width: clamp(30px, 8vw, 8vw);
   border-radius: 50%;
   margin: 0 auto;
   object-fit: cover;
 }
 
 .advertiser-name {
-  font-size: 1vw; 
+  font-size: 1vw;
   font-weight: bold;
   margin: 10px 0;
 }
@@ -177,8 +178,8 @@
 .star-3,
 .star-4,
 .star-5 {
-  width: 20px;
-  height: 20px;
+  height: clamp(10px, 3vh, 3vh);
+  width: auto;
   margin: 0 5px;
 }
 
@@ -218,4 +219,79 @@
   width: 1.5vw;
   height: auto;
   margin-right: 10px;
+}
+
+/*exchange-suggestion*/
+.exchange-suggestion {
+  top: 25%;
+  left: 20%;
+  z-index: 1;
+  padding: 20px;
+  margin-bottom: 0;
+  margin: 10vh 5vw;
+  position: absolute;
+  text-align: center;
+  border-radius: 40px;
+  height: min-content;
+  justify-content: center;
+  width: clamp(20%, 50%, 60%);
+  background-color: #d9d9d9;
+  box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.5);
+}
+
+.exchange-suggestion textarea {
+  padding-left: 5%;
+  width: 90%;
+  height: 20vh;
+  resize: vertical;
+  border: none;
+  font-size: 110%;
+  color: #1E1E1E;
+  transition: 0.2s;
+  font-style: italic;
+  border-radius: 45px;
+  margin: 2% 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.top {
+  display: flex; 
+  text-align: center;
+}
+
+.top p {
+  margin-left: 40%;
+}
+
+.top button {
+  margin-left: 35%;
+
+}
+
+.exchange-suggestion p {
+  display: inline;
+  font-weight: 900;
+  text-align: center;
+}
+
+.bottom {
+  display: block; 
+  text-align: center;
+  justify-content: center;
+}
+
+.bottom button {
+  margin-left: 45%;
+
+}
+
+.exchange-suggestion button {
+  width: 5%;
+  display: flex;
+  border: none;
+  background-color: transparent;
+}
+
+.exchange-suggestion img{
+  width: 100%;
 }
