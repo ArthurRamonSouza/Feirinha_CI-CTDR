@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import "./App.css"
-import AdView from "./pages/view_ad/AdView"
+import AdView from "./pages/AdView"
 
 function App() {
   return (
