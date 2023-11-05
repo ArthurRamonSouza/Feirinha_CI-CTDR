@@ -6,8 +6,10 @@ const AdView = () => {
   return (
     <div className="ad-view">
       <HeaderSearchBar />
-      <AdLarge />
-      <AdvertiserProfile />
+      <div className="ad-body">
+        <AdLarge />
+        <AdvertiserProfile />
+      </div>
     </div>
   )
 }

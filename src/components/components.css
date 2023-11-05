@@ -2,13 +2,17 @@
 .ad-view {
   width: 100vw;
   height: 100vh;
-  display: inline;
+  display: block;
   position: relative;
   overflow-x: hidden;
-  flex-direction: column;
   background-size: cover;
   justify-content: center;
+  font-family: 'Gloria Hallelujah Inder', cursive;
   background-image: url(./../assets/background.png);
+}
+
+.ad-body {
+  display: flex;
 }
 
 /*h-search-bar*/
@@ -28,7 +32,7 @@
 
 .h-search-bar button {
   margin-top: 3vh;
-  height: 60px;
+  height: 7vh;
   width: 252px;
   border: none;
   font-size: 4vh;
@@ -37,6 +41,7 @@
   margin-right: 5vh;
   border-radius: 45px;
   background-color: #D9D9D9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   font-family: 'Gloria Hallelujah Inder', cursive;
 
 }
@@ -64,13 +69,13 @@
   width: 100%;
   height: 110%;
   border: none;
-  font-size: 25px;
+  font-size: 3vh;
   color: #1E1E1E;
   transition: 0.2s;
   font-style: italic;
   border-radius: 45px;
   background-color: #D9D9D9;
-  font-family: 'Gloria Hallelujah Inder', cursive;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .search-bar button:hover {
@@ -92,10 +97,10 @@
   border: none;
   font-size: 15px;
   margin-left: 1vw;
-  object-fit: cover;
   position: absolute;
   transition: 0.2s all;
   background-color: transparent;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
 .search-bar button:hover {
@@ -110,14 +115,107 @@
   height: 3vh;
 }
 
-/*advertiser-profile*/
-.advertiser-profile {
-  background-color: #D9D9D9;
-  width: 50vw;
-}
-
 /*ad-large*/
 .ad-large {
-  background-color: green;
-  
+  margin: 5vh 10vw;
+  width: 45vw;
+  justify-content: center;
+}
+
+.ad-large p {
+  font-size: 15px;
+  font-weight: 400;
+  text-align: justify;
+
+}
+
+.ad-image img {
+  height: auto;
+  display: block;
+  max-width: 90%;
+  margin-left: 5%;
+  align-items: center;
+  border-radius: 40px;
+}
+
+/*advertiser-profile*/
+.advertiser-profile {
+  display: flex;
+  width: 20vw;
+  height: 50vh;
+  margin: 10vh 5vw;
+  background-color: #d9d9d9;
+  border-radius: 40px;
+  padding: 20px;
+  text-align: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.advertiser-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+.advertiser-name {
+  font-size: 1vw; 
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.star-1,
+.star-2,
+.star-3,
+.star-4,
+.star-5 {
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+}
+
+.advertiser-number {
+  font-size: 1vw;
+  margin: 10px 0;
+}
+
+.buy-btn,
+.exchange-btn {
+  margin-top: 20px;
+}
+
+.advertiser-profile button {
+  width: 12vw;
+  height: 6vh;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1vw;
+  display: flex;
+  align-items: center;
+}
+
+.buy-btn {
+  background-color: #FFD707;
+}
+
+.exchange-btn {
+  background-color: #7A7272;
+}
+
+.advertiser-profile button img {
+  width: 1.5vw;
+  height: auto;
+  margin-right: 10px;
 }
